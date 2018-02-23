@@ -1,0 +1,3 @@
+crud_homepage:
+    path:     /
+    defaults: { _controller: CRUDBundle:Default:index }

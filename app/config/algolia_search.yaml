@@ -1,0 +1,5 @@
+algolia_search:
+  indices:
+    - name: vnw_job_new_staging_ja
+      class: AppBundle\Entity\Job
+      enable_serializer_groups: true

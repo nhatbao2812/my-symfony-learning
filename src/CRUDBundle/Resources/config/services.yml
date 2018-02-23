@@ -1,0 +1,17 @@
+services:
+#    crud.example:
+#        class: CRUDBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+  crud.user.repo:
+    class: CRUDBundle\Repository\UserRepository
+    arguments: ['@doctrine.orm.entity_manager']
+  crud.user.handler:
+    class: CRUDBundle\Handler\UserHandler
+    arguments: ['@crud.user.repo']
+  crud.task.repo:
+    class: CRUDBundle\Repository\TaskRepository
+    arguments: ['@doctrine.orm.entity_manager']
+  crud.task.handler:
+    class: CRUDBundle\Handler\TaskHandler
+    arguments: ['@crud.task.repo','@router','@form.factory']

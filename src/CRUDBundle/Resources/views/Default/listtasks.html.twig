@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2>List of tasks</h2>
+    <div class="col-sm-12">
+        <a class="btn btn-primary" href="/create-task/1" role="button">Create task</a>
+    </div>
+    {% if messages is not empty %}
+        {% for message in messages %}
+            {{ message | raw}}
+        {% endfor %}
+    {% endif %}
+    {% if tasks is empty %}
+        <div class="col-sm-12">
+            <p>You don't have any task. Please create a new task</p>
+        </div>
+
+    {% else %}
+        <div class="col-sm-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Change Status</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td style="color:{{ (task.status == 0) ? 'green' : 'blue' }}">{{ task.description }}</td>
+                        <td><a class="btn btn-primary" href="/change-status/{{ task.taskId }}" role="button">Change status</a></td>
+                        <td><a class="btn btn-primary" href="/create-task/{{ task.userId }}?taskId={{ task.taskId }}" role="button">Update</a></td>
+                        <td><a class="btn btn-primary" href="/delete/{{ task.taskId }}" role="button">Delete</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
